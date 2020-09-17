@@ -27,7 +27,8 @@ namespace AspNetCoreMVC_ECommerceApp.Controllers
         {
             List<Product> products = await productService.GetAllProductWithCategory();
             IndexViewModel model = new IndexViewModel();
-            model.Products = products.Where(p => p.IsFeatured == true).ToList();
+            model.FeaturedProducts = products.Where(p => p.IsFeatured == true).ToList();
+            model.NewArrivalProducts = products.Where(p => p.IsNewArrival == true).ToList();
             return View(model);
         }
         public IActionResult Blog()
@@ -41,6 +42,17 @@ namespace AspNetCoreMVC_ECommerceApp.Controllers
         public IActionResult About()
         {
             return View();
+        }
+        public async Task<IActionResult> GetProductsByCategory(string categoryName)
+        {
+            //Send categoryname to view for breadcrumb
+            ViewBag.CategoryName = categoryName;
+            //Get all products
+            List<Product> products = await productService.GetAllProductWithCategory();
+            GetByCategoryViewModel model = new GetByCategoryViewModel();
+            //Fill view model produts
+            model.Products = products.Where(p => string.Equals(p.Category.Name, categoryName, StringComparison.OrdinalIgnoreCase)).ToList();
+            return View(model);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

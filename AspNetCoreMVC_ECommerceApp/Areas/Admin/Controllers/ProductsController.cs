@@ -43,6 +43,7 @@ namespace AspNetCoreMVC_ECommerceApp.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 Product product = new Product();
+                //Create fileName for Photo by using SaveAsync() extension method 
                 var fileName = await model.FormFile.SaveAsync(webHost.WebRootPath, "ProductImages");
                 model.PhotoPath = fileName;
                 // Map properties of viewModel to product
@@ -50,7 +51,7 @@ namespace AspNetCoreMVC_ECommerceApp.Areas.Admin.Controllers
                 var result= await productService.Create(product);
                 if (result != null)
                 {
-                    return RedirectToAction("Admin","ManageProducts");
+                    return RedirectToAction("ManageProducts", "Admin");
                 }
             }
             model.Categories = await categoryService.GetAll();            

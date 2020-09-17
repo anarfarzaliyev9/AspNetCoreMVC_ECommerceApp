@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreMVC_ECommerceApp.ViewModels
 {
-    public class IndexViewModel
+    public class GetByCategoryViewModel
     {
-        public List<Product> FeaturedProducts { get; set; }
-        public List<Product> NewArrivalProducts { get; set; }
+        public List<Product> Products { get; set; }
     }
 }
