@@ -32,10 +32,10 @@ namespace ECommerce_API
         {
             services.AddDbContext<AppDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-             {
-                 options.Password.RequiredUniqueChars = 0;
-             }).AddEntityFrameworkStores<AppDbContext>();
+            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            // {
+            //     options.Password.RequiredUniqueChars = 0;
+            // }).AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<IProductRepo, ProductRepo>();
             services.AddScoped<ICategoryRepo,CategoryRepo>();
             services.AddControllers();

@@ -111,9 +111,9 @@ namespace ECommerce_API.Controllers
                 var result = await repo.Edit(product);
                 if (result)
                 {
-                    return Ok();
+                    return Ok(result);
                 }
-                return BadRequest();
+                return BadRequest(result);
             }
                 catch (Exception e)
             {

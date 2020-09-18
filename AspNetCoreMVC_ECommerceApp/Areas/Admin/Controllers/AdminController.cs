@@ -21,11 +21,6 @@ namespace AspNetCoreMVC_ECommerceApp.Areas.Admin.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> ManageProducts()
-        {
-            ManageProductsViewModel model =new  ManageProductsViewModel();
-            model.Products = await productService.GetAllProductWithCategory();
-            return View(model);
-        }
+        
     }
 }

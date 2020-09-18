@@ -26,14 +26,15 @@ namespace AspNetCoreMVC_ECommerceApp.Services
             return await client.PostJsonAsync<Product>("api/products/",entity);
         }
 
-        public Task<bool> Delete(string id)
+        public async Task Delete(string id)
         {
-            throw new NotImplementedException();
+             await client.DeleteAsync($"api/products/{id}");
         }
 
-        public Task<bool> Edit(Product entity)
+        public async Task<bool> Edit(Product entity)
         {
-            throw new NotImplementedException();
+          
+            return await client.PutJsonAsync<bool>($"api/products/{entity.Id}", entity);
         }
 
         public async Task<List<Product>> GetAll()
@@ -46,9 +47,9 @@ namespace AspNetCoreMVC_ECommerceApp.Services
             return await client.GetJsonAsync<List<Product>>("api/products/GetProductsWithCategory");
         }
 
-        public Task<Product> GetById(string id)
+        public async Task<Product> GetById(string id)
         {
-            throw new NotImplementedException();
+            return await client.GetJsonAsync<Product>($"api/products/{id}");
         }
     }
 }

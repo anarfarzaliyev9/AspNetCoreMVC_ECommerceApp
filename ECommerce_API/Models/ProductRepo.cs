@@ -23,5 +23,6 @@ namespace ECommerce_API.Models
         {
             return await context.Products.Include(p => p.Category).ToListAsync();
         }
+        
     }
 }

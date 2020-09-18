@@ -22,7 +22,7 @@ namespace AspNetCoreMVC_ECommerceApp.Services
             return await client.PostJsonAsync<Category>("api/categories/", entity);
         }
 
-        public Task<bool> Delete(string id)
+        public Task Delete(string id)
         {
             throw new NotImplementedException();
         }

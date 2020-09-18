@@ -14,6 +14,9 @@ namespace AspNetCoreMVC_ECommerceApp.Profiles
         {
             CreateMap<AddProductViewModel,Product >();
             CreateMap<Product, AddProductViewModel>();
+            CreateMap<EditProductViewModel, Product>().ForMember(dest=>dest.Id,
+                opt=>opt.MapFrom(src=>src.ProductId));
+            CreateMap<Product, EditProductViewModel>();
         }
     }
 }

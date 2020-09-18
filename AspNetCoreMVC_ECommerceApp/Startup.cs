@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreMVC_ECommerceApp.Abstractions;
+using AspNetCoreMVC_ECommerceApp.Contexts;
 using AspNetCoreMVC_ECommerceApp.Profiles;
 using AspNetCoreMVC_ECommerceApp.Services;
 using AutoMapper;
+using ECommerce_API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +32,12 @@ namespace AspNetCoreMVC_ECommerceApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
-            
+            services.AddDbContext<AppDbContext>(options =>
+                       options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+             {
+                 options.Password.RequiredUniqueChars = 0;
+             }).AddEntityFrameworkStores<AppDbContext>();
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new ProductProfile());

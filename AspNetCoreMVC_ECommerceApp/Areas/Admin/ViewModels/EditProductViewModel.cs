@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreMVC_ECommerceApp.Areas.Admin.ViewModels
 {
-    public class AddProductViewModel
+    public class EditProductViewModel
     {
+        public string ProductId { get; set; }
         [Required]
         public string Name { get; set; }
-       
+
         public Category Category { get; set; }
-        [Display(Name="Category is required")]
-        [Required]
         public string CategoryId { get; set; }
         [Required]
         public decimal Price { get; set; }

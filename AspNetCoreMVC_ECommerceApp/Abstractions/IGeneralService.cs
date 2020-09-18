@@ -12,6 +12,6 @@ namespace AspNetCoreMVC_ECommerceApp.Abstractions
         Task<T> GetById(string id);
         Task<T> Create(T entity);
         Task<bool> Edit(T entity);
-        Task<bool> Delete(string id);
+        Task Delete(string id);
     }
 }
